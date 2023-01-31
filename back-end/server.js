@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
 
 const workoutRoutes = require("./routes/router");
+const userRoutes = require("./routes/userRoutes");
 
 // express app
 const app = express();
@@ -16,9 +17,13 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
+app.get("/", (req, res) => {
+  res.json({ mssg: "gotcha" });
+});
 
 //routes
 app.use("/api/workouts", workoutRoutes);
+app.use("/api/users", userRoutes);
 
 //connect to db
 mongoose
