@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 mongoose.set("strictQuery", true);
 
@@ -14,6 +15,11 @@ app.use(express.json());
 
 //middleware
 app.use((req, res, next) => {
+  cors({ origin: req.headers.origin });
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT,DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Credentials", true);
   console.log(req.path, req.method);
   next();
 });

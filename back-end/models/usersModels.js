@@ -34,7 +34,6 @@ userSchema.statics.signup = async function (email, password) {
   } else {
     const mysalt = await bcrypt.genSalt(20);
     const hash = await bcrypt.hash(password, mysalt);
-
     const user = await this.create({ email, password: hash });
     return user;
   }
@@ -46,7 +45,6 @@ userSchema.statics.login = async function (email, password) {
   }
 
   const user = await this.findOne({ email });
-
   if (!user) {
     throw Error("Incorrect email or password");
   }
