@@ -6,6 +6,7 @@ const Navbar = () => {
 
   const handleClick = () => {
     logout();
+    //Bug: Unable to save data to local storage
   };
 
   return (
